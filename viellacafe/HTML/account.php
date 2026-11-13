@@ -11,7 +11,7 @@ session_start();
     <title>My Account | Viella Café</title>
     <meta name="description" content="Create a Viella Café account or sign in to manage your profile and orders.">
     <meta name="theme-color" content="#F7F1E8">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css?v=3">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>

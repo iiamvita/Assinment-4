@@ -20,7 +20,7 @@ requireLogin();
     <title>My Profile | Viella Café</title>
     <meta name="description" content="View and update your Viella Café profile and account preferences.">
     <meta name="theme-color" content="#F7F1E8">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css?v=3">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
