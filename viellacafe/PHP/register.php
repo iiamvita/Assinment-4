@@ -75,8 +75,20 @@ $newUser = [
 $users[] = $newUser;
 
 if (!saveUsers($users)) {
-    sendResponse(false, "Unable to save your account.");
+    sendResponse(
+        false,
+        "Unable to save your account to PHP/data/user.json. Check that the folder and file in the copy served by Apache are writable, then check the Apache/PHP error log for details.",
+        [],
+        500
+    );
 }
+
+session_regenerate_id(true);
+$_SESSION["user_id"] = $newUser["id"];
+$_SESSION["user_name"] = $newUser["name"];
+$_SESSION["user_email"] = $newUser["email"];
+$_SESSION["user_phone"] = $newUser["phone"];
+$_SESSION["notifications"] = $newUser["notifications"];
 
 sendResponse(
     true,

@@ -10,20 +10,20 @@
 
     <meta name="description"
         content="Explore the prices at Viella's Café. Discover our artisanal coffees, teas and delicious beverages.">
+    <meta name="theme-color" content="#F7F1E8">
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
-<body>
+<body class="pricing-page">
 
     <div class="app-layout">
         <div id="header"></div>
 
         <main>
 
-        <!-- PRICING BANNER -->
+        <!-- Pricing introduction -->
         <div class="price-banner">
 
             <div>
@@ -40,12 +40,14 @@
         </div>
 
 
-        <!-- 1. HOT DRINKS -->
+        <div class="price-menu">
+
+        <!-- Hot drinks -->
         <section class="price-category">
 
-            <!-- Category Image -->
+                <!-- Category image -->
             <div class="price-image">
-                <img src="../Images/midnight-mocha.png"
+                <img src="../images/midnight-mocha.png"
                     alt="Midnight Mocha">
             </div>
 
@@ -64,7 +66,7 @@
                 </div>
 
 
-                <!-- Midnight Mocha -->
+                <!-- Midnight mocha -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -84,7 +86,7 @@
                 </div>
 
 
-                <!-- Seasonal Hot Chocolate -->
+                <!-- Seasonal hot chocolate -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -112,12 +114,12 @@
 
 
 
-        <!-- 2. ICED COFFEE -->
+        <!-- Iced coffee -->
         <section class="price-category reverse">
 
-            <!-- Category Image -->
+            <!-- Category image -->
             <div class="price-image">
-                <img src="../Images/caramel-iced-coffee.png"
+                <img src="../images/caramel-iced-coffee.png"
                     alt="Caramel Iced Coffee">
             </div>
 
@@ -136,7 +138,7 @@
                 </div>
 
 
-                <!-- Iced Coffee with Whipped Cream -->
+                <!-- Iced coffee with whipped cream -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -156,7 +158,7 @@
                 </div>
 
 
-                <!-- Caramel Toffee Iced Coffee -->
+                <!-- Caramel toffee iced coffee -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -176,7 +178,7 @@
                 </div>
 
 
-                <!-- Coconut Iced Latte -->
+                <!-- Coconut iced latte -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -201,12 +203,12 @@
 
 
 
-        <!-- 3. BLENDED DRINKS -->
+        <!-- Blended drinks -->
         <section class="price-category">
 
-            <!-- Category Image -->
+            <!-- Category image -->
             <div class="price-image">
-                <img src="../Images/blended-mocha-latte-.png"
+                <img src="../images/blended-mocha-latte.png"
                     alt="Blended Mocha Latte">
             </div>
 
@@ -225,7 +227,7 @@
                 </div>
 
 
-                <!-- Blended Mocha Latte -->
+                <!-- Blended mocha latte -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -245,7 +247,7 @@
                 </div>
 
 
-                <!-- Strawberry Swirl -->
+                <!-- Strawberry swirl -->
                 <div class="price-item">
 
                     <div class="drink-name">
@@ -268,9 +270,9 @@
 
         </section>
 
+        </div>
 
-
-        <!-- ENDING SECTION -->
+        <!-- Closing call to action -->
         <section class="price-ending">
 
             <h2>Ready to order?</h2>
@@ -280,7 +282,7 @@
                 favourites to the cart.
             </p>
 
-            <a href="index.html" class="price-button">
+            <a href="menu.html" class="price-button">
                 View the Menu
             </a>
 
@@ -291,7 +293,7 @@
 
     <div id="footer"></div>
 
-    <!-- HEADER JAVASCRIPT -->
+    <!-- Header and footer scripts -->
     <script src="../JS/headerScroll.js"></script>
 
     <script>

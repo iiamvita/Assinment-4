@@ -53,7 +53,7 @@ if (!$found) {
 }
 
 if (!saveUsers($users)) {
-    sendResponse(false, "Unable to update your profile.");
+    sendResponse(false, "Unable to update your profile. Check that PHP can write to PHP/data.", [], 500);
 }
 
 // Update session information

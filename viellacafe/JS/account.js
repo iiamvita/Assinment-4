@@ -25,78 +25,92 @@ function togglePassword(fieldId, btn) {
     }
 }
 
-// Handle Registration AJAX
+async function submitAccountRequest(endpoint, payload) {
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    let data;
+    try {
+        data = await response.json();
+    } catch (error) {
+        throw new Error(
+            `The PHP endpoint returned an invalid response (HTTP ${response.status}). Check that Apache is running and review its error log.`
+        );
+    }
+
+    if (!response.ok && !data.message) {
+        throw new Error(`The PHP request failed (HTTP ${response.status}).`);
+    }
+
+    return data;
+}
+
+function setAccountMessage(element, message, status = 'error') {
+    element.textContent = message;
+    element.classList.toggle('success', status === 'success');
+    element.classList.toggle('error', status === 'error');
+}
+
+// Handle account registration.
 function handleRegister(e) {
     e.preventDefault();
     
     const nameEl = document.getElementById('register-name');
     const emailEl = document.getElementById('register-email');
     const passEl = document.getElementById('register-password');
-    // Fallback check for confirm password ID
     const confirmEl = document.getElementById('confirm-password') || document.getElementById('register-confirm-password');
     const msgEl = document.getElementById('register-message');
 
-    // Debugging: Press F12 -> Console to see if any element is missing
-    console.log("Register Form Elements:", {
-        name: nameEl ? nameEl.value : "MISSING ID",
-        email: emailEl ? emailEl.value : "MISSING ID",
-        password: passEl ? passEl.value : "MISSING ID",
-        confirmPassword: confirmEl ? confirmEl.value : "MISSING ID"
-    });
-
     const name = nameEl ? nameEl.value.trim() : "";
     const email = emailEl ? emailEl.value.trim() : "";
-    const password = passEl ? passEl.value.trim() : "";
-    const confirmPassword = confirmEl ? confirmEl.value.trim() : "";
-
-    msgEl.style.color = "#d9534f";
+    const password = passEl ? passEl.value : "";
+    const confirmPassword = confirmEl ? confirmEl.value : "";
 
     if (!name || !email || !password || !confirmPassword) {
-        msgEl.textContent = "Please complete all fields.";
+        setAccountMessage(msgEl, "Please complete all fields.");
         return;
     }
 
     if (password !== confirmPassword) {
-        msgEl.textContent = "Passwords do not match.";
+        setAccountMessage(msgEl, "Passwords do not match.");
         return;
     }
 
     if (password.length < 8) {
-        msgEl.textContent = "Password must be at least 8 characters.";
+        setAccountMessage(msgEl, "Password must be at least 8 characters.");
         return;
     }
 
-    fetch('../PHP/register.php', {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({
+    submitAccountRequest('../PHP/register.php', {
             name: name,
             email: email,
             password: password,
             confirmPassword: confirmPassword
-        })
     })
-    .then(res => res.json())
     .then(data => {
         if (data.success) {
-            msgEl.style.color = "#28a745";
-            msgEl.textContent = data.message || "Account created successfully! Redirecting...";
+            setAccountMessage(
+                msgEl,
+                data.message || "Account created successfully! Redirecting...",
+                "success"
+            );
             setTimeout(() => {
-                window.location.href = 'profile.php';
+                window.location.href = 'Profile.php';
             }, 1000);
         } else {
-            msgEl.textContent = data.message || data.error || "Registration failed.";
+            setAccountMessage(msgEl, data.message || data.error || "Registration failed.");
         }
     })
     .catch(err => {
         console.error("Registration error:", err);
-        msgEl.textContent = "An error occurred. Please try again.";
+        setAccountMessage(msgEl, err.message || "An error occurred. Please try again.");
     });
 }
 
-// Handle Login AJAX
+// Handle account sign-in.
 function handleLogin(e) {
     e.preventDefault();
 
@@ -105,39 +119,102 @@ function handleLogin(e) {
     const msgEl = document.getElementById('login-message');
 
     const email = emailEl ? emailEl.value.trim() : "";
-    const password = passEl ? passEl.value.trim() : "";
-
-    msgEl.style.color = "#d9534f";
+    const password = passEl ? passEl.value : "";
 
     if (!email || !password) {
-        msgEl.textContent = "Please complete all fields.";
+        setAccountMessage(msgEl, "Please complete all fields.");
         return;
     }
 
-    fetch('../PHP/login.php', {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
+    submitAccountRequest('../PHP/login.php', {
+        email: email,
+        password: password
     })
-    .then(res => res.json())
     .then(data => {
         if (data.success) {
-            msgEl.style.color = "#28a745";
-            msgEl.textContent = data.message || "Login successful! Redirecting...";
+            setAccountMessage(
+                msgEl,
+                data.message || "Login successful! Redirecting...",
+                "success"
+            );
             setTimeout(() => {
-                window.location.href = 'profile.php';
+                window.location.href = 'Profile.php';
             }, 1000);
         } else {
-            msgEl.textContent = data.message || data.error || "Invalid email or password.";
+            setAccountMessage(msgEl, data.message || data.error || "Invalid email or password.");
         }
     })
     .catch(err => {
         console.error("Login error:", err);
-        msgEl.textContent = "An error occurred. Please try again.";
+        setAccountMessage(msgEl, err.message || "An error occurred. Please try again.");
     });
 }
+
+function initializeProfilePage() {
+    const form = document.getElementById('profileUpdateForm');
+    if (!form) return;
+
+    const nameInput = document.getElementById('fullName');
+    const phoneInput = document.getElementById('phoneNumber');
+    const emailInput = document.getElementById('userEmail');
+    const notificationsInput = document.getElementById('notifications');
+    const nameDisplay = document.getElementById('profile-name-display');
+    const emailDisplay = document.getElementById('displayEmailSub');
+    const message = document.getElementById('profile-message');
+
+    fetch('../PHP/user.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Could not load your profile (HTTP ${response.status}).`);
+            }
+            return response.json();
+        })
+        .then(profile => {
+            if (!profile.logged_in) {
+                window.location.href = 'account.php';
+                return;
+            }
+
+            nameInput.value = profile.full_name || '';
+            phoneInput.value = profile.phone || '';
+            emailInput.value = profile.email || '';
+            emailDisplay.textContent = profile.email || '';
+            notificationsInput.checked = Boolean(profile.notifications);
+            nameDisplay.textContent = profile.full_name || '';
+        })
+        .catch(error => {
+            console.error("Profile loading error:", error);
+            message.textContent = error.message || "Could not load your profile.";
+            message.className = 'form-message error';
+        });
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        message.textContent = '';
+        message.className = 'form-message';
+
+        submitAccountRequest('../PHP/update_profile.php', {
+            name: nameInput.value.trim(),
+            phone: phoneInput.value.trim(),
+            notifications: notificationsInput.checked
+        })
+            .then(response => {
+                message.textContent = response.message || (
+                    response.success
+                        ? "Profile updated."
+                        : "Could not update your profile."
+                );
+                message.className = `form-message ${response.success ? 'success' : 'error'}`;
+                if (response.success) {
+                    nameDisplay.textContent = nameInput.value.trim();
+                }
+            })
+            .catch(error => {
+                console.error("Profile update error:", error);
+                message.textContent = error.message || "Could not update your profile.";
+                message.className = 'form-message error';
+            });
+    });
+}
+
+initializeProfilePage();

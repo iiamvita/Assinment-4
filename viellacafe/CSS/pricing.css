@@ -1,538 +1,263 @@
-
-/* =========================================================
-   VIELLA'S CAFÉ - PRICING PAGE
-========================================================= */
-
-
-/* ---------- PRICING VARIABLES ---------- */
-
-:root {
-    --p-light: #F8F4ED;
-    --p-mid: #F0E8DC;
-
-    --arch-fill: var(--color-sage, #839178);
-    --arch-offset: #DCC8AD;
-
-    --p-dark: var(--color-espresso, #2E1E0F);
-    --p-brown: var(--color-mocha, #5B3C33);
-    --p-muted: #6F625B;
-
-    --p-white: #FFFFFF;
-    --p-border: #E5DDD2;
-
-    --p-max: 1200px;
-    --p-side: 2rem;
+.pricing-page main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
 }
-
-
-/* ---------- PRICING BANNER ---------- */
 
 .price-banner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px 24px;
-
-    width: 100%;
-    padding: 24px var(--p-side);
-    margin: 0 0 0;
-
-    color: var(--p-white);
-
-    background:
-        linear-gradient(
-            120deg,
-            #2E1E0F 0%,
-            #4A2C20 65%,
-            #63432F 100%
-        );
-
-    border-bottom: 2px solid var(--color-sage, #839178);
-}
-
-.price-banner p {
-    font-family: var(--font-links);
-    font-size: 11px;
-    font-weight: var(--fw-medium, 500);
-    letter-spacing: 2px;
-    color: #E8D5BD;
-    margin: 0;
+    margin-bottom: 1.5rem;
+    padding: 1.75rem 1.25rem;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-mocha), var(--color-espresso));
+    border-radius: var(--radius-card);
+    text-align: center;
 }
 
 .price-banner h1 {
-    font-family: var(--font-h2);
-    font-size: clamp(25px, 3vw, 34px);
-    font-weight: var(--fw-regular, 400);
-    line-height: 1.2;
-    color: #FFF3DF;
-    margin: 0;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 0 0 0.6rem;
+    color: var(--color-cream-light);
 }
 
-.price-banner > span {
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: #F3E7D8;
-    letter-spacing: 0.3px;
+.price-banner p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--color-sand);
 }
 
-
-/* ---------- CATEGORY SECTIONS ---------- */
+.price-menu {
+    display: grid;
+    gap: 1rem;
+}
 
 .price-category {
     display: grid;
-    grid-template-columns: minmax(165px, 0.65fr) minmax(0, 1.8fr);
-
-    align-items: center;
-    gap: 35px;
-
-    width: 100%;
-    padding: 35px var(--p-side);
-
-    background-color: var(--p-light);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
 }
-
-.price-category.reverse {
-    grid-template-columns: minmax(0, 1.8fr) minmax(165px, 0.65fr);
-
-    background-color: var(--p-mid);
-}
-
-.price-category.reverse .price-image {
-    order: 2;
-}
-
-.price-category.reverse .price-content {
-    order: 1;
-}
-
-/* ---------- PRICING IMAGE ARCH ---------- */
 
 .price-image {
-    --arch-w: 165px;
-    --arch-h: 220px;
-
-    justify-self: center;
-
-    width: var(--arch-w);
-    height: var(--arch-h);
-
-    background-color: var(--arch-fill);
-
-    border: 1.5px solid #65745D;
-
-    border-radius: 90px 90px 8px 8px;
-
-    box-shadow:
-        8px 8px 0 var(--arch-offset),
-        0 10px 20px rgba(46, 30, 15, 0.12);
-
-    overflow: hidden;
+    display: grid;
+    min-height: 170px;
+    place-items: center;
+    padding: 1rem;
+    background: var(--color-caramel-light);
 }
 
-/* ---------- PRICING CONTENT CARD ---------- */
+.price-image img {
+    display: block;
+    width: min(100%, 220px);
+    max-height: 170px;
+    object-fit: contain;
+}
 
 .price-content {
     min-width: 0;
-    width: 100%;
-
-    padding: 22px 24px 12px;
-
-    background-color: #FFFFFF;
-
-    border: 1px solid #E4DDD2;
-    border-radius: 12px;
-
-    box-shadow: 0 5px 18px rgba(46, 30, 15, 0.07);
-}
-
-
-/* ---------- CATEGORY TITLE AND SIZE HEADINGS ---------- */
-
-.price-title,
-.price-item {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 75px 75px 75px;
-
-    gap: 10px;
-    align-items: center;
+    padding: 1rem;
 }
 
 .price-title {
-    padding-bottom: 13px;
-    margin-bottom: 4px;
-
-    border-bottom: 1.5px solid var(--color-sage, #839178);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-caramel);
 }
 
 .price-title h2 {
-    font-family: var(--font-h2);
-    font-size: 23px;
-    font-weight: var(--fw-regular, 400);
-    line-height: 1.3;
-
-    color: #4A3027;
+    margin: 0;
+    color: var(--color-mocha);
 }
 
 .price-columns {
-    display: contents;
+    display: none;
 }
-
-.price-columns span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 27px;
-    height: 27px;
-
-    margin: 0 auto;
-
-    border: 1px solid var(--color-sage, #839178);
-    border-radius: 50%;
-
-    font-family: var(--font-h3);
-    font-size: 12px;
-
-    color: #4A3027;
-    background-color: #F4F6F1;
-}
-
-
-/* ---------- DRINK ROWS ---------- */
 
 .price-item {
-    padding: 13px 6px;
-
-    border-bottom: 1px solid #EAE4DC;
-    border-radius: 4px;
-
-    transition: background-color 0.25s ease;
-
-    overflow-wrap: break-word;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .price-item:last-child {
-    border-bottom: none;
+    border-bottom: 0;
 }
-
-.price-item:hover {
-    background-color: #F8F7F2;
-}
-
-
-/* ---------- DRINK NAMES ---------- */
 
 .drink-name {
-    min-width: 0;
+    grid-column: 1 / -1;
+    color: var(--color-text-main);
+    font-weight: var(--fw-semibold);
+}
+
+.price-item > span:not(.drink-name) {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .drink-name h3 {
-    font-family: var(--font-h3);
-    font-size: 15px;
-    font-weight: var(--fw-regular, 400);
-    line-height: 1.4;
-
-    color: #3D2A22;
-
-    margin-bottom: 4px;
+    margin: 0 0 0.35rem;
+    color: var(--color-mocha);
+    font-size: 1rem;
 }
 
 .drink-name p {
-    font-family: var(--font-body);
-    font-size: 12px;
-    line-height: 1.55;
-
-    color: #71645C;
-
     margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.45;
 }
 
-
-/* ---------- PRICING IMAGES ---------- */
-
-.price-image img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-    object-position: center;
-
-    transition: transform 0.5s ease;
-}
-
-.price-image:hover img {
-    transform: scale(1.03);
-}
-
-
-/* ---------- PRICES ---------- */
-
-.price-item > span {
-    text-align: center;
-
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: var(--fw-medium, 500);
-
-    color: #4A3027;
-
-    white-space: nowrap;
-}
-
-
-/* ---------- SEASONAL LABEL ---------- */
-
-.tag {
-    display: inline-block;
-
-    margin-left: 7px;
-    padding: 3px 9px;
-
-    border-radius: 20px;
-
-    background-color: #839178;
-    color: #FFFFFF;
-
-    font-family: var(--font-links);
-    font-size: 9px;
-    font-weight: var(--fw-medium, 500);
-
-    letter-spacing: 0.5px;
+.price-item .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.5rem;
+    color: var(--color-mocha);
+    background: var(--color-caramel-light);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: var(--fw-semibold);
     vertical-align: middle;
 }
 
-
-/* ---------- PAGE ENDING ---------- */
-
-.price-ending {
-    text-align: center;
-
-    padding: 38px var(--p-side);
-
-    background:
-        linear-gradient(
-            135deg,
-            #2E1E0F,
-            #4A2C20
-        );
-
-    border-top: 2px solid var(--color-sage, #839178);
+.price-item > span:nth-child(2)::before,
+.price-item > span:nth-child(3)::before,
+.price-item > span:nth-child(4)::before {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    font-weight: var(--fw-semibold);
 }
 
-.price-ending h2 {
-    font-family: var(--font-h2);
-    font-size: 25px;
-    font-weight: var(--fw-regular, 400);
+.price-item > span:nth-child(2)::before {
+    content: "S";
+}
 
-    color: #F5DCC0;
+.price-item > span:nth-child(3)::before {
+    content: "M";
+}
 
-    margin-bottom: 8px;
+.price-item > span:nth-child(4)::before {
+    content: "L";
+}
+
+.price-ending {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    color: var(--color-white);
+    background: var(--color-mocha);
+    border-radius: var(--radius-card);
+    text-align: center;
 }
 
 .price-ending p {
-    font-family: var(--font-body);
-    font-size: 13px;
-    line-height: 1.6;
-
-    color: #F1E7DC;
-
-    margin-bottom: 18px;
+    margin: 0 0 1rem;
 }
 
-.price-button {
+.price-ending .price-button {
     display: inline-flex;
+    min-height: 44px;
     align-items: center;
     justify-content: center;
-
-    padding: 11px 25px;
-
-    background-color: #F0DCC0;
-    color: #352319;
-
-    border-radius: 30px;
-
-    font-family: var(--font-button);
-    font-size: 14px;
-    font-weight: var(--fw-medium, 500);
-
-    text-decoration: none;
-
-    transition: all 0.3s ease;
+    padding: 0.65rem 1.25rem;
+    color: var(--color-espresso);
+    background: var(--color-caramel-light);
+    border-radius: 999px;
+    font-weight: var(--fw-semibold);
 }
 
-.price-button:hover {
-    background-color: #839178;
-    color: #FFFFFF;
-    transform: translateY(-2px);
+.price-ending .price-button:hover {
+    color: var(--color-white);
+    background: var(--color-caramel-hover);
 }
 
-
-/* ---------- TABLET RESPONSIVENESS ---------- */
-
-@media (max-width: 900px) {
-
-    .price-category,
-    .price-category.reverse {
-        grid-template-columns: minmax(130px, 0.5fr) minmax(0, 1.8fr);
-
-        gap: 25px;
-        padding: 28px 5%;
+@media (min-width: 600px) {
+    .pricing-page main {
+        padding: 1.5rem 1.5rem 2.5rem;
     }
-
-    .price-category.reverse .price-image {
-        order: 2;
-    }
-
-    .price-category.reverse .price-content {
-        order: 1;
-    }
-
-    .price-image {
-        --arch-w: 140px;
-        --arch-h: 185px;
-    }
-
-    .price-content {
-        padding: 18px 15px 10px;
-    }
-
-    .price-title,
-    .price-item {
-        grid-template-columns: minmax(0, 1fr) 65px 65px 65px;
-        gap: 6px;
-    }
-}
-
-
-/* ---------- MOBILE RESPONSIVENESS ---------- */
-
-@media (max-width: 650px) {
 
     .price-banner {
-        flex-direction: column;
-        align-items: flex-start;
-
-        padding: 22px 5%;
-        gap: 8px;
-    }
-
-    .price-banner h1 {
-        font-size: 27px;
-    }
-
-    .price-category,
-    .price-category.reverse {
-        grid-template-columns: 1fr;
-
-        gap: 25px;
-        padding: 28px 5%;
-    }
-
-    .price-category.reverse .price-image,
-    .price-category.reverse .price-content {
-        order: initial;
-    }
-
-    .price-image {
-        --arch-w: 150px;
-        --arch-h: 190px;
+        padding: 2.25rem 1.75rem;
     }
 
     .price-content {
-        padding: 16px 13px 8px;
-    }
-
-    .price-title {
-        display: block;
-    }
-
-    .price-title h2 {
-        font-size: 21px;
-        margin-bottom: 10px;
-    }
-
-    .price-columns {
-        display: none;
+        padding: 1.25rem 1.5rem;
     }
 
     .price-item {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-
-        gap: 8px;
-        padding: 12px 2px;
+        grid-template-columns: minmax(0, 1fr) repeat(3, minmax(44px, 0.3fr));
+        gap: 0.75rem;
     }
 
     .drink-name {
-        grid-column: 1 / -1;
-        margin-bottom: 5px;
-    }
-
-    .drink-name h3 {
-        font-size: 14px;
-    }
-
-    .drink-name p {
-        font-size: 12px;
-    }
-
-    .price-item > span {
-        padding: 7px 3px;
-
-        border-radius: 20px;
-
-        background-color: #F0F3EC;
-
-        font-size: 11px;
-        white-space: nowrap;
-    }
-
-    .price-item > span:nth-of-type(1)::before {
-        content: "S · ";
-    }
-
-    .price-item > span:nth-of-type(2)::before {
-        content: "M · ";
-    }
-
-    .price-item > span:nth-of-type(3)::before {
-        content: "L · ";
-    }
-
-    .price-ending {
-        padding: 30px 5%;
-    }
-
-    .price-ending h2 {
-        font-size: 22px;
+        grid-column: auto;
     }
 }
 
+@media (min-width: 768px) {
+    .pricing-page main {
+        padding: 2rem;
+    }
 
-/* ---------- SMALL MOBILE SCREENS ---------- */
+    .price-category {
+        grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+    }
 
-@media (max-width: 380px) {
+    .price-image {
+        min-height: 100%;
+    }
+
+    .price-title {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) repeat(3, minmax(44px, 0.3fr));
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .price-columns {
+        display: contents;
+        color: var(--color-text-muted);
+        font-size: 0.8rem;
+        font-weight: var(--fw-semibold);
+        text-align: center;
+    }
+
+    .price-item > span:nth-child(2)::before,
+    .price-item > span:nth-child(3)::before,
+    .price-item > span:nth-child(4)::before {
+        content: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .price-menu {
+        gap: 1.5rem;
+    }
+
+    .price-image img {
+        width: min(100%, 260px);
+        max-height: 210px;
+    }
+}
+
+@media (max-width: 359px) {
+    .pricing-page main {
+        padding-inline: 0.75rem;
+    }
 
     .price-content {
-        padding: 14px 9px 6px;
+        padding: 0.8rem;
     }
 
     .price-item {
-        gap: 5px;
-    }
-
-    .price-item > span {
-        font-size: 10px;
-    }
-
-    .drink-name h3 {
-        font-size: 13px;
-    }
-
-    .drink-name p {
-        font-size: 11px;
+        gap: 0.2rem;
     }
 }

@@ -18,11 +18,9 @@ requireLogin();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Profile | Viella Café</title>
-
-    <link rel="stylesheet" href="../CSS/root.css">
+    <meta name="description" content="View and update your Viella Café profile and account preferences.">
+    <meta name="theme-color" content="#F7F1E8">
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/profile.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -30,18 +28,21 @@ requireLogin();
 
 <body class="profile-page">
 
-    <div class="dashboard-wrapper">
+    <div class="app-layout">
+        <div id="header"></div>
+
+        <main class="dashboard-wrapper">
 
         <div class="dashboard-grid">
 
-            <!-- PROFILE CARD -->
+            <!-- Profile details -->
 
             <div class="profile-card">
 
                 <div class="profile-avatar-box">
 
                     <img
-                        src="../images/default-avatar.png"
+                        src="../images/viella-cafe-logo.png"
                         alt="Profile Photo"
                         id="profileAvatar">
 
@@ -129,12 +130,10 @@ requireLogin();
             </div>
 
 
-            <!-- RIGHT SIDE CARDS -->
+            <!-- Account details and order history -->
 
             <div class="right-cards-stack">
 
-
-                <!-- ACCOUNT CARD -->
 
                 <div class="info-card">
 
@@ -206,8 +205,7 @@ requireLogin();
 
                     <a
                         href="../PHP/logout.php"
-                        class="badge-pill badge-danger"
-                        style="text-decoration:none;">
+                        class="badge-pill badge-danger logout-link">
 
                         Log Out
 
@@ -215,8 +213,6 @@ requireLogin();
 
                 </div>
 
-
-                <!-- RECENT ORDERS -->
 
                 <div class="info-card">
 
@@ -249,12 +245,24 @@ requireLogin();
 
         </div>
 
+        </main>
     </div>
 
     <script src="../JS/account.js"></script>
+    <script src="../JS/headerScroll.js"></script>
 
     <script>
-        lucide.createIcons();
+        fetch("header.html")
+            .then(response => {
+                if (!response.ok) throw new Error("Header could not be loaded.");
+                return response.text();
+            })
+            .then(header => {
+                document.getElementById("header").innerHTML = header;
+                lucide.createIcons();
+                setupMobileMenu();
+            })
+            .catch(error => console.error("Header loading error:", error));
     </script>
 
 </body>

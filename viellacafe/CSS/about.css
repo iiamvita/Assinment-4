@@ -1,99 +1,89 @@
-
-@import url('Root.css');
-
-/* =====================================
-   ABOUT SECTION - MOBILE FIRST
-===================================== */
-
 .about {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
     justify-items: center;
-    gap: 25px;
+    gap: 1.5rem;
+    margin: 1rem;
+    padding: 1.75rem;
     text-align: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-feature);
+    box-shadow: var(--shadow-soft);
 }
 
-/* About Logo */
-.about-logo{
-    width:140px;
-    height:auto;
-    display:block;
+.about-logo {
+    display: block;
+    width: 140px;
+    height: auto;
+    object-fit: contain;
 }
-
-.about{
-    align-items:center;
-}
-
-/* About Text */
 
 .about-text {
     width: 100%;
 }
 
 .about-text h2 {
-    font-size: 28px;
-    margin-bottom: 18px;
+    margin-bottom: 1rem;
+    color: var(--color-mocha);
 }
 
 .about-text p {
-    font-size: 15px;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
     line-height: 1.8;
-    color: var(--espresso);
-    margin-bottom: 15px;
 }
 
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    color: var(--color-mocha);
+    background: transparent;
+    border: 1px solid var(--color-mocha);
+    border-radius: 999px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
 
-/* =====================================
-   TABLET RESPONSIVENESS
-===================================== */
+.btn-secondary:hover {
+    color: var(--color-white);
+    background: var(--color-mocha);
+}
 
-@media screen and (min-width: 600px) {
-
+@media (min-width: 600px) {
     .about {
-        grid-template-columns: 0.8fr 1.2fr;
-        gap: 35px;
+        grid-template-columns: minmax(150px, 0.8fr) minmax(0, 1.2fr);
+        gap: 2rem;
+        margin: 1.5rem;
+        padding: 2rem;
         text-align: left;
     }
 
     .about-logo {
-        width: 100%;
-        max-width: 260px;
-    }
-
-    .about-text h2 {
-        font-size: 32px;
-    }
-
-    .about-text p {
-        font-size: 16px;
+        width: min(100%, 220px);
     }
 }
 
-
-/* =====================================
-   DESKTOP RESPONSIVENESS
-===================================== */
-
-@media screen and (min-width: 1024px) {
-
+@media (min-width: 1024px) {
     .about {
-        grid-template-columns: 1fr 1.2fr;
-        gap: 60px;
+        grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+        gap: 3rem;
+        margin: 2rem;
+        padding: 3rem;
     }
 
     .about-logo {
-        width: 100%;
-        max-width: 340px;
+        width: min(100%, 300px);
     }
+}
 
-    .about-text h2 {
-        font-size: 38px;
-        margin-bottom: 20px;
-    }
-
-    .about-text p {
-        font-size: 16px;
-        line-height: 1.9;
+@media (max-width: 359px) {
+    .about {
+        margin: 0.75rem;
+        padding: 1.25rem;
     }
 }

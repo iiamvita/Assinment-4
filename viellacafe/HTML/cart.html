@@ -9,15 +9,13 @@
 
     <meta name="description"
         content="Review your selected drinks and manage your order at Viella's Café.">
+    <meta name="theme-color" content="#F7F1E8">
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/cart.css">
-    <link rel="stylesheet" href="../CSS/menu.css">
 </head>
 
-<body>
+<body class="cart-page">
 
     <div class="app-layout">
         <div id="header"></div>
@@ -30,7 +28,7 @@
                 <h1>Your Shopping Cart</h1>
 
                 <p class="breadcrumb">
-                    <a href="index.html">Home</a> / Cart
+                    <a href="../index.html">Home</a> / Cart
                 </p>
             </div>
         </section>
@@ -61,7 +59,7 @@
                     </a>
 
                     <p>
-                        <a href="index.html">Continue Shopping</a>
+                        <a href="menu.html">Continue Shopping</a>
                     </p>
 
                 </div>
@@ -74,20 +72,18 @@
     </div>
 
 
-    <!-- Footer -->
+    <!-- Shared footer -->
     <div id="footer"></div>
 
 
-    <!-- JavaScript -->
-    <script src="../JS/menuDB.js"></script> <!-- NEW -->
+    <!-- Cart and navigation scripts -->
+    <script src="../JS/menuDB.js"></script>
     <script src="../JS/headerScroll.js"></script>
 
 
     <script>
 
-        /* =====================================
-           HEADER LOADING
-        ===================================== */
+        // Load the shared navigation and enable its mobile menu.
 
         fetch("header.html")
             .then(response => {
@@ -114,9 +110,7 @@
             });
 
 
-        /* =====================================
-           FOOTER LOADING
-        ===================================== */
+        // Load the shared footer and current year.
 
         fetch("footer.html")
             .then(response => {
@@ -136,9 +130,7 @@
             });
 
 
-        /* =====================================
-           CART ELEMENTS
-        ===================================== */
+        // Keep the cart controls together for rendering.
 
         const cartItems = document.getElementById("cart-items");
 
@@ -149,9 +141,7 @@
         const checkoutButton = document.getElementById("checkout-btn");
 
 
-        /* =====================================
-           PRICE FORMAT
-        ===================================== */
+        // Display prices in the café's local currency.
 
         function formatPrice(price) {
 
@@ -160,9 +150,7 @@
         }
 
 
-        /* =====================================
-           GET CART DATA
-        ===================================== */
+        // Read the latest cart contents.
 
         function getCartItems() {
 
@@ -178,9 +166,7 @@
         }
 
 
-        /* =====================================
-           SAVE CART DATA
-        ===================================== */
+        // Save cart updates between page visits.
 
         function saveCart(items) {
 
@@ -191,18 +177,14 @@
 
         }
 
-/* =====================================
-   GET PRODUCT INFORMATION (STRING FIX)
-===================================== */
+        // Match product IDs consistently when loading cart items.
     function getProduct(productId) {
     const products = DB.get("products") || [];
     return products.find(product => String(product.id) === String(productId));
 }
 
 
-        /* =====================================
-           RENDER CART
-        ===================================== */
+        // Rebuild the cart and update its total.
 
         function renderCart() {
 
@@ -213,7 +195,7 @@
             let total = 0;
 
 
-            /* ---------- EMPTY CART ---------- */
+            // Show a friendly message when there are no items.
 
             if (cart.length === 0) {
 
@@ -226,22 +208,22 @@
                             anything to your cart yet.
                         </p>
 
-                        <a href="index.html">
+                        <a href="menu.html">
                             Explore Our Menu
                         </a>
                     </div>
                 `;
 
-                cartTotal.style.display = "none";
+                cartTotal.hidden = true;
 
                 return;
             }
 
 
-            cartTotal.style.display = "block";
+            cartTotal.hidden = false;
 
 
-            /* ---------- DISPLAY CART ITEMS ---------- */
+            // Add each product and its controls.
 
             cart.forEach((item, index) => {
 
@@ -281,27 +263,26 @@
                 total += itemTotal;
 
 
-                /* ---------- CREATE CART ITEM ---------- */
+                // Build one cart row.
 
                 const cartItem = document.createElement("div");
 
                 cartItem.className = "cart-item";
 
 
-                /* Product Image */
+                // Product image
 
                 const image = document.createElement("img");
 
                 image.className = "cart-item-image";
 
-                image.src = "../images/" + product.image;
+                const imageName = product.image || "viella-cafe-logo.png";
+                const imageFile = /\.[a-z0-9]+$/i.test(imageName)
+                    ? imageName
+                    : `${imageName}.png`;
+                image.src = "../images/" + imageFile;
 
                 image.alt = product.name;
-
-                image.style.width = "85px";
-                image.style.height = "85px";
-                image.style.objectFit = "contain";
-                image.style.borderRadius = "7px";
 
                 image.onerror = function () {
 
@@ -313,7 +294,7 @@
                 };
 
 
-                /* Product Information */
+                // Product details
 
                 const info = document.createElement("div");
 
@@ -358,7 +339,7 @@
                 info.appendChild(itemTotalText);
 
 
-                /* ---------- QUANTITY CONTROLS ---------- */
+                // Quantity controls
 
                 const quantityControls =
                     document.createElement("div");
@@ -396,7 +377,7 @@
                 );
 
 
-                /* Decrease Quantity */
+                // Decrease the item count.
 
                 decrease.addEventListener("click", () => {
 
@@ -419,7 +400,7 @@
                 });
 
 
-                /* Increase Quantity */
+                // Increase the item count.
 
                 increase.addEventListener("click", () => {
 
@@ -441,7 +422,7 @@
                 quantityControls.appendChild(increase);
 
 
-                /* ---------- REMOVE BUTTON ---------- */
+                // Remove this item.
 
                 const removeButton =
                     document.createElement("button");
@@ -466,7 +447,7 @@
                 });
 
 
-                /* ---------- ASSEMBLE CART ITEM ---------- */
+                // Add the finished row to the page.
 
                 cartItem.appendChild(image);
 
@@ -482,22 +463,19 @@
             });
 
 
-            /* ---------- UPDATE TOTAL ---------- */
+            // Update the displayed order total.
 
             totalPrice.textContent = formatPrice(total);
 
 
-            /* Disable checkout if no valid items remain */
+            // Keep checkout unavailable when the cart has no valid items.
 
-            checkoutButton.style.display =
-                total > 0 ? "inline-block" : "none";
+            checkoutButton.hidden = total <= 0;
 
         }
 
 
-        /* =====================================
-           INITIALIZE CART
-        ===================================== */
+        // Render the cart once the product data is ready.
 
         if (
             typeof DB !== "undefined" &&
@@ -511,7 +489,7 @@
             cartItems.textContent =
                 "Unable to load your cart. Please check db.js.";
 
-            cartTotal.style.display = "none";
+            cartTotal.hidden = true;
 
             console.error(
                 "DB or Cart is not available."

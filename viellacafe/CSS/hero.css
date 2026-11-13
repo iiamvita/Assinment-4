@@ -1,133 +1,103 @@
-
 .hero {
-  position: relative;
-  min-height: 75vh;
-  display: flex;
-  align-items: center;
-  padding: 3rem 8%;
-  background:
-    linear-gradient(135deg, rgba(46, 30, 15, 0.8), rgba(91, 60, 51, 0.65)),
-    url('../images/cafe-background.png') center/cover no-repeat;
-  color: #FFFFFF;
-  overflow: hidden;
-  margin-top: 0;
+    position: relative;
+    display: flex;
+    min-height: 65svh;
+    align-items: center;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 3rem 1.25rem;
+    color: var(--color-white);
+    background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url("../images/cafe-background.png") center / cover no-repeat;
+    border-radius: var(--radius-feature);
 }
 
 .hero-content {
-  max-width: 650px;
-  z-index: 2;
-  animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 700px;
+    animation: hero-rise 0.7s ease-out both;
 }
 
 .hero-content h2 {
-  font-family: var(--font-h2);
-  font-size: var(--fs-h2);
-  color: #FFE8C2;
-  margin-bottom: 0.75rem;
-  line-height: 1.15;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
-  animation: slideInFromLeft 1s ease-out;
+    margin-bottom: 0.75rem;
+    color: var(--color-caramel-light);
+    line-height: 1.15;
+    text-shadow: var(--text-shadow-overlay);
 }
 
 .hero-content p {
-  font-family: var(--font-body);
-  font-size: var(--fs-p);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.92);
-  animation: fadeIn 1.2s ease-out;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    line-height: 1.75;
 }
 
 .hero .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 2rem;
-  background-color: var(--sand, #E7D7BA);
-  color: var(--color-espresso);
-  border: none;
-  border-radius: 8px;
-  font-family: var(--font-button);
-  font-size: var(--fs-button);
-  font-weight: var(--fw-semibold);
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: bounceIn 1.4s ease-out;
+    position: relative;
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-espresso);
+    background: var(--color-paper);
+    border: 0;
+    border-bottom: 3px solid var(--color-cta-line);
+    border-radius: 999px;
+    box-shadow: var(--shadow-soft);
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero .btn:hover {
-  background-color: var(--color-caramel, #D4A373);
-  color: #FFFFFF;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(131, 145, 120, 0.4);
+    color: var(--color-white);
+    background: var(--color-caramel-hover);
+    transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   Keyframe Animations for Divine Entrance
-   ========================================================================== */
-@keyframes heroFadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ==========================================================================
-   Responsive Overrides (Tablet & Desktop Breakpoints)
-   ========================================================================== */
-@media (max-width: 767px) {
-  .hero {
-    min-height: 65vh;
-    padding: 5rem 1.25rem 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero {
-    min-height: 80vh;
-    padding: 4rem 3rem;
-  }
+@media (min-width: 600px) {
+    .hero {
+        min-height: 75svh;
+        margin: 1.5rem;
+        padding: 4rem 2.5rem;
+    }
 }
 
 @media (min-width: 1024px) {
-  .hero {
-    min-height: 90vh;
-    padding: 5rem 8%;
-  }
+    .hero {
+        min-height: 82svh;
+        margin: 2rem;
+        padding: 5rem 8%;
+    }
+}
+
+@media (max-width: 359px) {
+    .hero {
+        min-height: 60svh;
+        margin: 0.75rem;
+        padding: 2rem 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-content {
+        animation: none;
+    }
+
+    .hero .btn {
+        transition: none;
+    }
 }

@@ -1,245 +1,107 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Alice&family=Lora:ital,wght@0..700;1,400..700&family=Redressed&family=Roboto:wght@400;500;700&family=The+Season&display=swap');
 
-
-/* =====================================
-   GLOBAL RESET
-===================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-/* =====================================
-   COLOR PALETTE
-===================================== */
 :root {
-    /* Main Colors */
-    --color-sage: #839178;
     --color-cream: #F7F1E8;
+    --color-paper: #FFFAF5;
+    --color-sand: #E7D7BA;
+    --color-sand-light: #EFE3D4;
+    --color-caramel-light: #F0DCC0;
+    --color-white: #FFFFFF;
+
     --color-mocha: #5B3C33;
+    --color-mocha-deep: #4A3027;
     --color-espresso: #2E1E0F;
+    --color-caramel: #C68B59;
+    --color-caramel-hover: #A96E42;
+    --color-caramel-soft: #D6A46F;
+    --color-cream-warm: #F8F4ED;
+    --color-cream-light: #FFF3DF;
+    --color-text-muted: #806F60;
+    --color-text-soft: #6F625B;
     --color-slate: #858585;
-  
-    /* Semantic Color Mappings */
-    --color-bg-primary: #F7F1E8;
-    --color-bg-secondary: #EFE3D4;
+    --color-danger: #B52B2B;
+    --color-disabled: #CCCCCC;
+    --color-success: var(--color-mocha);
+    --color-cta-line: #839178;
+
+    --color-bg-primary: var(--color-cream);
+    --color-bg-secondary: var(--color-sand-light);
+    --color-surface: var(--color-paper);
     --color-text-main: var(--color-espresso);
-    --color-text-muted: var(--color-slate);
-    --color-accent-primary: var(--color-mocha);
-    --color-accent-secondary: var(--color-sage);
-  
-    --cream: var(--color-cream);
-    --espresso: var(--color-espresso);
-    --brown: var(--color-mocha);
-    --grey: var(--color-slate);
-    --sage: var(--color-sage);
-  
-    --sand: #E7D7BA;
-    --white: #FFFFFF;
-    --tan: #E8D7B5;
-  
-    /* Typography */
-    --font-h1: 'Redressed', cursive, serif;
-    --font-h2: 'Lora', serif;
-    --font-h3: 'Alice', serif;
-    --font-h4-h6: 'Lora', serif;
-    --font-body: 'Lora', serif;
-    --font-button: 'Alice', serif;
-    --font-links: 'Roboto', sans-serif;
-  
-    --fw-regular: 400;
-    --fw-medium: 500;
-    --fw-semibold: 600;
-    --fw-bold: 700;
-  
-    --fs-h1: 2.25rem;
-    --fs-h2: 1.75rem;
-    --fs-h3: 1.35rem;
-    --fs-p: 0.95rem;
-    --fs-button: 0.95rem;
-  }
-  
-:root {
-
-    /* Main Colors */
-
-    --color-sage: #839178;
-    --color-cream: #F7F1E8;
-    --color-mocha: #5B3C33;
-    --color-espresso: #2E1E0F;
-    --color-slate: #858585;
-
-
-    /* Semantic Color Mappings */
-
-    --color-bg-primary: #F7F1E8;
-    --color-bg-secondary: #EFE3D4;
-
-    --color-text-main: var(--color-espresso);
-    --color-text-muted: var(--color-slate);
-
-    --color-accent-primary: var(--color-mocha);
-    --color-accent-secondary: var(--color-sage);
-
-
-    /* Legacy Aliases */
-
-    --cream: var(--color-cream);
-    --espresso: var(--color-espresso);
-    --brown: var(--color-mocha);
-    --grey: var(--color-slate);
-    --sage: var(--color-sage);
-
-    --sand: #E7D7BA;
-    --white: #FFFFFF;
-    --tan: #E8D7B5;
-
-
-    /* =====================================
-       TYPOGRAPHY & FONT FAMILIES
-    ===================================== */
+    --color-border: var(--color-sand);
 
     --font-h1: 'Redressed', cursive, serif;
     --font-h2: 'The Season', 'Lora', serif;
     --font-h3: 'Alice', serif;
-    --font-h4-h6: 'Lora', serif;
     --font-body: 'Lora', serif;
     --font-button: 'Alice', serif;
     --font-links: 'Roboto', sans-serif;
-
-
-    /* Font Weights */
 
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-semibold: 600;
     --fw-bold: 700;
 
-
-    /* =====================================
-       FONT SIZES
-       Mobile Default
-    ===================================== */
-
     --fs-h1: 2rem;
-    --fs-h2: 1.75rem;
-    --fs-h3: 1.5rem;
-    --fs-h4: 1.25rem;
-    --fs-h5: 1.125rem;
-    --fs-h6: 1rem;
-
+    --fs-h2: 1.65rem;
+    --fs-h3: 1.3rem;
     --fs-p: 1rem;
-    --fs-a: 1rem;
     --fs-button: 0.95rem;
-    --fs-li: 1rem;
-    --fs-small: 0.75rem;
-    --fs-label: 0.875rem;
-    --fs-input: 1rem;
-    --fs-caption: 0.75rem;
-    --fs-blockquote: 1.125rem;
+    --fs-small: 0.8rem;
 
+    --radius-card: 14px;
+    --radius-feature: 24px;
+    --header-height: 76px;
+    --header-height-mobile: 64px;
+    --page-spacing: 1rem;
+    --section-spacing: 3rem;
 
-    /* =====================================
-       LAYOUT VARIABLES
-    ===================================== */
-
-    --header-height: 100px;
-    --header-height-mobile: 70px;
-
-    --page-spacing: 2rem;
-    --section-spacing: 5rem;
+    --shadow-card: 0 8px 25px rgba(46, 30, 15, 0.08);
+    --shadow-soft: 0 4px 15px rgba(46, 30, 15, 0.08);
+    --overlay: rgba(46, 30, 15, 0.55);
+    --overlay-strong: rgba(46, 30, 15, 0.72);
+    --border-white-soft: rgba(255, 255, 255, 0.35);
+    --border-white-strong: rgba(255, 255, 255, 0.55);
+    --shadow-dark-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-dark-strong: 0 6px 16px rgba(0, 0, 0, 0.2);
+    --focus-ring: 0 0 0 3px rgba(198, 139, 89, 0.18);
+    --focus-outline: 2px solid rgba(198, 139, 89, 0.2);
+    --text-shadow-overlay: 0 2px 8px rgba(0, 0, 0, 0.45);
+    --transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-
-/* =====================================
-   TABLET FONT OVERRIDES
-===================================== */
-
-@media (min-width: 768px) {
-
-    :root {
-
-        --fs-h1: 2.5rem;
-        --fs-h2: 2rem;
-        --fs-h3: 1.75rem;
-        --fs-h4: 1.5rem;
-        --fs-h5: 1.25rem;
-        --fs-h6: 1.125rem;
-
-        --fs-p: 1rem;
-        --fs-a: 1rem;
-        --fs-button: 1rem;
-        --fs-li: 1rem;
-        --fs-small: 0.875rem;
-        --fs-label: 0.875rem;
-        --fs-input: 1rem;
-        --fs-caption: 0.875rem;
-        --fs-blockquote: 1.25rem;
-    }
+* {
+    box-sizing: border-box;
 }
-
-
-/* =====================================
-   DESKTOP FONT OVERRIDES
-===================================== */
-
-@media (min-width: 1024px) {
-
-    :root {
-
-        --fs-h1: 3rem;
-        --fs-h2: 2.25rem;
-        --fs-h3: 1.875rem;
-        --fs-h4: 1.625rem;
-        --fs-h5: 1.375rem;
-        --fs-h6: 1.25rem;
-
-        --fs-p: 1.125rem;
-        --fs-a: 1rem;
-        --fs-button: 1rem;
-        --fs-li: 1.125rem;
-        --fs-small: 0.875rem;
-        --fs-label: 1rem;
-        --fs-input: 1rem;
-        --fs-caption: 0.875rem;
-        --fs-blockquote: 1.5rem;
-    }
-}
-
-
-/* =====================================
-   GLOBAL BASE STYLING
-===================================== */
 
 html {
+    min-width: 320px;
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: var(--header-height-mobile);
 }
 
 body {
+    display: flex;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
-
-    background-color: var(--color-bg-primary);
+    overflow-x: hidden;
+    background: var(--color-bg-primary);
     color: var(--color-text-main);
-
     font-family: var(--font-body);
     font-size: var(--fs-p);
     font-weight: var(--fw-regular);
-
     line-height: 1.6;
-
-    overflow-x: hidden;
 }
 
-
-/* =====================================
-   GLOBAL TYPOGRAPHY
-===================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    color: var(--color-mocha);
+}
 
 h1 {
     font-family: var(--font-h1);
@@ -259,97 +121,60 @@ h3 {
     font-weight: var(--fw-semibold);
 }
 
-h4 {
-    font-family: var(--font-h4-h6);
-    font-size: var(--fs-h4);
-    font-weight: var(--fw-medium);
-}
-
-h5 {
-    font-family: var(--font-h4-h6);
-    font-size: var(--fs-h5);
-    font-weight: var(--fw-medium);
-}
-
-h6 {
-    font-family: var(--font-h4-h6);
-    font-size: var(--fs-h6);
-    font-weight: var(--fw-medium);
-}
-
 p {
-    font-family: var(--font-body);
-    font-size: var(--fs-p);
-    font-weight: var(--fw-regular);
+    color: var(--color-text-muted);
 }
 
 a {
+    color: inherit;
     font-family: var(--font-links);
-    font-size: var(--fs-a);
-    font-weight: var(--fw-medium);
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
 button,
 .btn {
+    cursor: pointer;
     font-family: var(--font-button);
     font-size: var(--fs-button);
-    font-weight: var(--fw-semibold);
 }
 
-li {
-    font-family: var(--font-body);
-    font-size: var(--fs-li);
-    font-weight: var(--fw-regular);
+img {
+    max-width: 100%;
 }
 
-small {
-    font-family: var(--font-body);
-    font-size: var(--fs-small);
-    font-weight: var(--fw-regular);
+@media (min-width: 600px) {
+    :root {
+        --fs-h1: 2.4rem;
+        --fs-h2: 1.9rem;
+        --fs-h3: 1.5rem;
+        --fs-p: 1rem;
+        --page-spacing: 1.5rem;
+        --section-spacing: 4rem;
+    }
 }
 
-label {
-    font-family: var(--font-body);
-    font-size: var(--fs-label);
-    font-weight: var(--fw-medium);
+@media (min-width: 1024px) {
+    :root {
+        --fs-h1: 3rem;
+        --fs-h2: 2.25rem;
+        --fs-h3: 1.75rem;
+        --fs-p: 1.05rem;
+        --page-spacing: 2rem;
+        --section-spacing: 5rem;
+    }
 }
 
-input,
-textarea,
-select {
-    font-family: var(--font-body);
-    font-size: var(--fs-input);
-    font-weight: var(--fw-regular);
+@media (max-width: 359px) {
+    :root {
+        --fs-h1: 1.8rem;
+        --fs-h2: 1.45rem;
+        --fs-h3: 1.2rem;
+    }
 }
-
-figcaption,
-.caption {
-    font-family: var(--font-body);
-    font-size: var(--fs-caption);
-    font-weight: var(--fw-regular);
-}
-
-blockquote {
-    font-family: var(--font-body);
-    font-size: var(--fs-blockquote);
-    font-weight: var(--fw-regular);
-}
-
-/* =====================================
-   GLOBAL HEADING & PARAGRAPH COLORS
-===================================== */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #68765B;
-}
-
-p {
-    color: #806F60;
-}
-
-

@@ -7,7 +7,7 @@ const DEFAULT_PRODUCTS = [
     id: "iced-coffee-toffee",
     name: "Iced Coffee Toffee",
     category: "Coffee",
-    image: "Iced-coffee-toffee",
+    image: "iced-coffee-toffee",
     description: "A refreshing iced coffee with rich toffee flavor, topped with a swirl of whipped cream.",
     prices: { S: 25.00, M: 30.00, L: 35.00 },
     seasonal: false

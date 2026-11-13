@@ -9,26 +9,27 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account | Viella Café</title>
-
-    <link rel="stylesheet" href="../CSS/root.css">
+    <meta name="description" content="Create a Viella Café account or sign in to manage your profile and orders.">
+    <meta name="theme-color" content="#F7F1E8">
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/account.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="account-page">
 
+    <header class="mobile-header">
+        <button class="hamburger-btn" id="toggle-sidebar" type="button" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
+            <i data-lucide="menu"></i>
+        </button>
+        <img class="mobile-logo" src="../images/viella-cafe-logo.png" alt="Viella Café">
+    </header>
+
     <div class="overlay" id="overlay"></div>
 
     <div class="app-layout">
 
-        <!-- SIDEBAR (Unified with Cart / Home) -->
+        <!-- Shared navigation -->
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="brand-header">
@@ -39,7 +40,7 @@ session_start();
                 <nav>
                     <ul class="nav-list">
                         <li class="nav-item">
-                            <a href="index.html">
+                            <a href="../index.html">
                                 <i data-lucide="home"></i>
                                 Home
                             </a>
@@ -65,7 +66,7 @@ session_start();
                     <div class="welcome-user">
                         Welcome, <strong><?php echo htmlspecialchars($_SESSION['user_name']); ?></strong>
                     </div>
-                    <a href="profile.php" class="nav-item">
+                    <a href="Profile.php" class="nav-item">
                         <i data-lucide="user"></i> My Profile
                     </a>
                     <a href="../PHP/logout.php" class="logout-btn">Logout</a>
@@ -77,7 +78,7 @@ session_start();
             </div>
         </aside>
 
-        <!-- MAIN CONTENT -->
+        <!-- Account forms -->
         <main class="account-main">
             <section class="account-section">
                 <div class="account-container">
@@ -87,7 +88,7 @@ session_start();
                     </div>
 
                     <div class="account-card">
-                        <!-- TABS -->
+                        <!-- Switch between registration and sign-in. -->
                         <div class="account-tabs">
                             <button type="button" class="account-tab active" id="register-tab" onclick="showRegister()">
                                 Create Account
@@ -97,7 +98,7 @@ session_start();
                             </button>
                         </div>
 
-                        <!-- REGISTER FORM -->
+                        <!-- New account details -->
                         <form id="register-form" class="account-form" onsubmit="handleRegister(event)">
                             <h2>Create Your Account</h2>
                             <p class="form-description">Join Viella Café and make every visit a little more personal.</p>
@@ -133,20 +134,18 @@ session_start();
                             <p id="register-message" class="form-message"></p>
                         </form>
 
-                                                <!-- LOGIN FORM -->
+                                                <!-- Existing account details -->
                         <form id="login-form" class="account-form hidden" onsubmit="handleLogin(event)">
                             <h2>Welcome Back</h2>
                             
                             <div class="form-group">
                                 <label for="login-email">Email Address</label>
-                                <!-- MAKE SURE ID IS EXACTLY login-email -->
                                 <input type="email" id="login-email" placeholder="Enter your email" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="login-password">Password</label>
                                 <div class="password-wrapper">
-                                    <!-- MAKE SURE ID IS EXACTLY login-password -->
                                     <input type="password" id="login-password" placeholder="Enter your password" required>
                                     <button type="button" class="show-password" onclick="togglePassword('login-password', this)">Show</button>
                                 </div>
@@ -163,8 +162,10 @@ session_start();
     </div>
 
     <script src="../JS/account.js"></script>
+    <script src="../JS/headerScroll.js"></script>
     <script>
         lucide.createIcons();
+        setupMobileMenu();
     </script>
 </body>
 </html>

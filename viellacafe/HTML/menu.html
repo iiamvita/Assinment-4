@@ -6,21 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu | Viella Café</title>
     <meta name="description" content="Explore the menu at Viella's Café. Discover iced coffees, blended drinks and hot favourites. Choose your size and add your drink to your cart.">
+    <meta name="theme-color" content="#F7F1E8">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- CSS -->
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/menu.css">
 </head>
 
-<body>
+<body class="menu-page">
 
     <div class="app-layout">
-        <!---header foes here -->
+        <!-- The shared navigation loads into this slot. -->
         <div id="header"></div>
 
         <main> 
 
-        <!-- Menu Banner -->
+        <!-- Menu introduction -->
         <div class="menu-banner">
             <div>
                 <h1>Our Menu</h1>
@@ -38,10 +37,10 @@
             
         </div>
 
-        <!-- Menu Filters -->
+        <!-- Category filters -->
         <div class="menu-filters" id="menu-filters" role="group" aria-label="Filter drinks"></div>
 
-        <!-- Menu Products Grid -->
+        <!-- Drinks are added here by the menu script. -->
         <section class="menu-section">
             <div class="menu-grid" id="menu-grid"></div>
         </section>
@@ -49,12 +48,12 @@
         </main>
     </div>
 
-    <!-- Cart Toast Notification -->
+    <!-- Cart confirmation message -->
     <div class="menu-toast" id="menu-toast" role="status" aria-live="polite"></div>
 
-    <!-- Footer -->
+    <!-- Shared footer -->
     <div id="footer"></div>
-  <!-- JavaScript Files -->
+  <!-- Page scripts -->
     <script src="../JS/menuDB.js"></script>
     <script src="../JS/headerScroll.js"></script>
 

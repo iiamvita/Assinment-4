@@ -1,255 +1,224 @@
+.account-page .account-main {
+    flex: 1;
+    min-width: 0;
+}
 
-/* =====================================
-   ACCOUNT PAGE - MOBILE FIRST
-===================================== */
-
-.account-page {
-    min-height: 80vh;
-    padding: 2rem 1rem 3rem;
+.account-page .account-section {
     display: flex;
-    justify-content: center;
+    min-height: calc(100vh - var(--header-height-mobile));
     align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: var(--color-bg-primary);
 }
 
 .account-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
-
-    background-color: var(--white);
-    border: 1px solid var(--sand);
-    border-radius: 16px;
-
-    box-shadow: 0 5px 20px rgba(46, 30, 15, 0.08);
 }
 
-/* =====================================
-   ACCOUNT HEADING
-===================================== */
-
-.account-container h1 {
-    color: var(--color-mocha);
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-
-.account-container > p {
-    text-align: center;
-    color: var(--color-text-muted);
+.account-intro {
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
-/* =====================================
-   LOGIN / REGISTER TABS
-===================================== */
+.account-intro h1 {
+    margin-bottom: 0.5rem;
+    color: var(--color-mocha);
+}
+
+.account-intro p {
+    color: var(--color-text-main);
+    line-height: 1.7;
+}
+
+.account-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
 
 .account-tabs {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.75rem;
-    padding: 5px;
-
-    background-color: var(--color-bg-secondary);
-    border-radius: 10px;
-}
-
-.account-tabs button {
-    flex: 1;
-    padding: 0.75rem 0.5rem;
-
-    color: var(--color-mocha);
-    background-color: transparent;
-
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-
-    transition: background-color 0.25s ease,
-                color 0.25s ease;
-}
-
-.account-tabs button.active,
-.account-tabs button:hover {
-    color: var(--white);
-    background-color: var(--color-sage);
-}
-
-/* =====================================
-   ACCOUNT FORMS
-===================================== */
-
-#register-form,
-#login-form {
     width: 100%;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
 }
 
-#register-form h2,
-#login-form h2 {
+.account-tab {
+    flex: 1;
+    min-width: 0;
+    padding: 0.85rem 0.5rem;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.account-tab:hover,
+.account-tab.active {
     color: var(--color-mocha);
-    margin-bottom: 1.25rem;
-    text-align: center;
 }
 
-#register-form .form-group,
-#login-form .form-group {
+.account-tab.active {
+    border-bottom-color: var(--color-mocha);
+}
+
+.account-form h2 {
+    margin-bottom: 0.5rem;
+    color: var(--color-mocha);
+}
+
+.form-description {
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.form-group {
+    width: 100%;
     margin-bottom: 1.1rem;
 }
 
-#register-form label,
-#login-form label {
+.account-form label {
     display: block;
     margin-bottom: 0.4rem;
-    color: var(--color-espresso);
+    color: var(--color-text-main);
+    font-weight: var(--fw-semibold);
 }
 
-#register-form input,
-#login-form input {
+.account-form input {
+    display: block;
     width: 100%;
+    min-width: 0;
     min-height: 46px;
     padding: 0.75rem 0.9rem;
-
-    color: var(--color-espresso);
-    background-color: var(--color-bg-primary);
-
-    border: 1px solid var(--sand);
-    border-radius: 8px;
+    color: var(--color-text-main);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
     outline: none;
-
-    transition: border-color 0.2s ease,
-                box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#register-form input:focus,
-#login-form input:focus {
-    border-color: var(--color-sage);
-    box-shadow: 0 0 0 3px rgba(131, 145, 120, 0.15);
+.account-form input:focus {
+    border-color: var(--color-caramel);
+    box-shadow: var(--focus-ring);
 }
 
-#register-form input::placeholder,
-#login-form input::placeholder {
+.account-form input::placeholder {
     color: var(--color-slate);
 }
 
-/* =====================================
-   PASSWORD INPUTS
-===================================== */
-
 .password-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
 .password-wrapper input {
-    padding-right: 3rem !important;
+    padding-right: 4.5rem;
 }
 
-.password-wrapper button {
+.password-wrapper .show-password {
     position: absolute;
-    right: 10px;
-
-    padding: 5px;
+    top: 50%;
+    right: 0.75rem;
+    padding: 0.35rem;
     color: var(--color-mocha);
     background: transparent;
-
-    border: none;
+    border: 0;
     cursor: pointer;
+    transform: translateY(-50%);
 }
 
-/* =====================================
-   FORM BUTTONS
-===================================== */
+.password-hint {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--color-text-muted);
+}
 
-#register-form button[type="submit"],
-#login-form button[type="submit"] {
+.account-btn {
     width: 100%;
     min-height: 48px;
-    margin-top: 0.75rem;
+    margin-top: 0.4rem;
     padding: 0.8rem 1rem;
-
-    color: var(--white);
-    background-color: var(--color-mocha);
-
-    border: none;
-    border-radius: 8px;
+    color: var(--color-white);
+    background: var(--color-mocha);
+    border: 0;
+    border-radius: 7px;
     cursor: pointer;
-
-    transition: background-color 0.25s ease,
-                transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-#register-form button[type="submit"]:hover,
-#login-form button[type="submit"]:hover {
-    background-color: var(--color-espresso);
+.account-btn:hover {
+    background: var(--color-espresso);
 }
 
-#register-form button[type="submit"]:active,
-#login-form button[type="submit"]:active {
-    transform: scale(0.98);
+.account-btn:active {
+    transform: scale(0.99);
 }
 
-/* =====================================
-   FORM MESSAGES
-===================================== */
-
-#register-message,
-#login-message,
-#profile-message {
-    margin-top: 1rem;
+.form-message {
+    min-height: 1.4em;
+    margin-top: 0.9rem;
+    color: var(--color-text-muted);
     font-size: var(--fs-small);
+    line-height: 1.5;
     text-align: center;
 }
 
 .form-message.success {
-    color: #4F7045;
+    color: var(--color-success);
 }
 
 .form-message.error {
-    color: #B33A3A;
+    color: var(--color-danger);
 }
 
-/* =====================================
-   LINKS
-===================================== */
+.account-page .hidden {
+    display: none;
+}
 
-.account-container a {
+.back-home {
+    display: block;
+    margin-top: 1.5rem;
     color: var(--color-mocha);
-    text-decoration: none;
+    text-align: center;
 }
 
-.account-container a:hover {
-    color: var(--color-sage);
-    text-decoration: underline;
+.back-home:hover {
+    color: var(--color-caramel-hover);
 }
 
-/* =====================================
-   TABLET
-===================================== */
-
-@media (min-width: 768px) {
-
-    .account-page {
-        padding: 3rem 2rem 4rem;
+@media (min-width: 600px) {
+    .account-page .account-section {
+        padding: 2.5rem 1.5rem;
     }
 
-    .account-container {
-        padding: 2.5rem 2.25rem;
+    .account-card {
+        padding: 2rem;
     }
 }
-
-/* =====================================
-   DESKTOP
-===================================== */
 
 @media (min-width: 1024px) {
+    .account-page .account-section {
+        min-height: 100vh;
+        padding: 3rem 2rem;
+    }
+}
 
-    .account-page {
-        min-height: calc(100vh - var(--header-height));
+@media (max-width: 359px) {
+    .account-card {
+        padding: 1rem;
     }
 
-    .account-container {
-        max-width: 500px;
-        padding: 3rem;
+    .account-tab {
+        font-size: 0.85rem;
     }
 }
