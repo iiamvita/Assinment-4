@@ -10,8 +10,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account | Viella Café</title>
     <meta name="description" content="Create a Viella Café account or sign in to manage your profile and orders.">
-    <meta name="theme-color" content="#F7F1E8">
-    <link rel="stylesheet" href="../CSS/style.css?v=3">
+    <meta name="theme-color" content="#FFFFFF">
+    <link rel="stylesheet" href="../CSS/style.css?v=4">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
