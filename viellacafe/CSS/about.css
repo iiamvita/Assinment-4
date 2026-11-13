@@ -1,0 +1,99 @@
+
+@import url('Root.css');
+
+/* =====================================
+   ABOUT SECTION - MOBILE FIRST
+===================================== */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 25px;
+    text-align: center;
+}
+
+/* About Logo */
+.about-logo{
+    width:140px;
+    height:auto;
+    display:block;
+}
+
+.about{
+    align-items:center;
+}
+
+/* About Text */
+
+.about-text {
+    width: 100%;
+}
+
+.about-text h2 {
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.about-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--espresso);
+    margin-bottom: 15px;
+}
+
+
+/* =====================================
+   TABLET RESPONSIVENESS
+===================================== */
+
+@media screen and (min-width: 600px) {
+
+    .about {
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 35px;
+        text-align: left;
+    }
+
+    .about-logo {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .about-text h2 {
+        font-size: 32px;
+    }
+
+    .about-text p {
+        font-size: 16px;
+    }
+}
+
+
+/* =====================================
+   DESKTOP RESPONSIVENESS
+===================================== */
+
+@media screen and (min-width: 1024px) {
+
+    .about {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+    }
+
+    .about-logo {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .about-text h2 {
+        font-size: 38px;
+        margin-bottom: 20px;
+    }
+
+    .about-text p {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+}

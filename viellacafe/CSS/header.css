@@ -1,0 +1,213 @@
+
+@import url('root.css');
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 12px 6%;
+
+    background: #FFFAF5;
+
+    position: relative;
+    z-index: 100;
+}
+
+
+/* =========================================================
+   HEADER LOGO
+========================================================= */
+
+.site-header .logo img {
+    width: 65px;
+    height: 65px;
+
+    max-width: 100%;
+
+    object-fit: contain;
+    display: block;
+}
+
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.site-header nav {
+    display: flex;
+    align-items: center;
+}
+
+.site-header .nav-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 30px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.site-header .nav-list .nav-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-header .nav-list .nav-item a {
+    display: inline-block;
+
+    color: #6F4E37;
+    background: transparent;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    padding: 10px 5px;
+
+    transition: color 0.3s ease;
+}
+
+.site-header .nav-list .nav-item a:hover {
+    color: #B67A4D;
+}
+
+.site-header .nav-list .nav-item.active a {
+    color: #B67A4D;
+    font-weight: 600;
+}
+
+#header {
+    display: contents;
+}
+
+.mobile-header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--sand);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.hamburger-btn {
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    color: var(--color-espresso);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.mobile-logo {
+    position: absolute;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    transform: translateX(-50%);
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--color-bg-secondary);
+    border-right: 1px solid var(--sand);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+}
+
+.navbar-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.brand-header h1 {
+    font-size: 1.7rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+    background-color: var(--sand);
+    color: var(--color-mocha);
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--sand);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 45;
+}
+
+@media (max-width: 768px) {
+    .mobile-header {
+        display: flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        z-index: 50;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .overlay.open {
+        display: block;
+    }
+}

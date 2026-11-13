@@ -1,0 +1,65 @@
+@import url('Root.css');
+
+.cart-container {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item h3 {
+    font-size: 18px;
+}
+
+.cart-item p {
+    font-size: 13px;
+    color: var(--grey);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity-controls button {
+    width: 28px;
+    height: 28px;
+    background: var(--sage);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #a33;
+    font-size: 13px;
+}
+
+.cart-total {
+    text-align: right;
+    padding-top: 25px;
+}
+
+.cart-total h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 30px;
+    color: var(--grey);
+}

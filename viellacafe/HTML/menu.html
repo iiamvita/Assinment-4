@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Viella Café</title>
+    <meta name="description" content="Explore the menu at Viella's Café. Discover iced coffees, blended drinks and hot favourites. Choose your size and add your drink to your cart.">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/menu.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+        <!---header foes here -->
+        <div id="header"></div>
+
+        <main> 
+
+        <!-- Menu Banner -->
+        <div class="menu-banner">
+            <div>
+                <h1>Our Menu</h1>
+                <p class="breadcrumb">
+                    <a href="homepage.html">Home</a> 
+            / Menu
+            </p>
+        
+            </div>
+
+            <a href="pricing.html" class="menu-banner-link">
+                See all prices
+            </a>
+
+            
+        </div>
+
+        <!-- Menu Filters -->
+        <div class="menu-filters" id="menu-filters" role="group" aria-label="Filter drinks"></div>
+
+        <!-- Menu Products Grid -->
+        <section class="menu-section">
+            <div class="menu-grid" id="menu-grid"></div>
+        </section>
+
+        </main>
+    </div>
+
+    <!-- Cart Toast Notification -->
+    <div class="menu-toast" id="menu-toast" role="status" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+  <!-- JavaScript Files -->
+    <script src="../JS/menuDB.js"></script>
+    <script src="../JS/headerScroll.js"></script>
+
+    <script>
+        /* ---------- Check DB & Cart Availability ---------- */
+        if (typeof DB === "undefined" || typeof Cart === "undefined") {
+            console.error("CRITICAL: menuDB.js failed to load. Check your file path in <script src='...'>");
+        }
+
+        /* ---------- Header Loading ---------- */
+        fetch("header.html")
+            .then(response => {
+                if (!response.ok) throw new Error("Header could not be loaded.");
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+                lucide.createIcons();
+                if (typeof setupHeaderScroll === "function") setupHeaderScroll();
+                if (typeof setupMobileMenu === "function") setupMobileMenu();
+            })
+            .catch(error => console.error(error));
+
+        fetch("footer.html")
+            .then(response => {
+                if (!response.ok) throw new Error("Footer could not be loaded.");
+                return response.text();
+            })
+            .then(footer => {
+                document.getElementById("footer").innerHTML = footer;
+                document.getElementById("footer-year").textContent =
+                    new Date().getFullYear();
+            })
+            .catch(error => console.error("Footer loading error:", error));
+
+        /* ---------- Image Loader ---------- */
+        const MENU_IMAGE_EXTS = ["png", "webp", "jpg", "jpeg", "avif", "svg", "gif"];
+        const MENU_IMAGE_FOLDER = "../images/";
+
+        function loadMenuImage(img, imageName) {
+            const candidates = [];
+            if (imageName) {
+                const base = imageName.replace(/\.[a-z0-9]+$/i, "");
+                MENU_IMAGE_EXTS.forEach(ext => candidates.push(MENU_IMAGE_FOLDER + base + "." + ext));
+            }
+            MENU_IMAGE_EXTS.forEach(ext => candidates.push(MENU_IMAGE_FOLDER + "viella-cafe-logo." + ext));
+
+            let i = 0;
+            img.onerror = () => {
+                if (i < candidates.length) {
+                    img.src = candidates[i++];
+                } else {
+                    img.onerror = null;
+                }
+            };
+            img.onerror();
+        }
+
+        /* ---------- Menu Logic ---------- */
+        const grid = document.getElementById("menu-grid");
+        const filterBar = document.getElementById("menu-filters");
+        const toast = document.getElementById("menu-toast");
+
+        const SIZES = ["S", "M", "L"];
+        const SIZE_NAMES = { S: "Small", M: "Medium", L: "Large" };
+
+        let activeFilter = "All";
+        let toastTimer;
+
+        function formatPrice(price) {
+            if (typeof fmt === "function") return fmt(price);
+            return "TT$" + Number(price).toFixed(2);
+        }
+
+        function showToast(message) {
+            toast.innerHTML = `${message} <a href="cart.html">View Cart</a>`;
+            toast.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3500);
+        }
+
+        function buildCard(product) {
+            const card = document.createElement("article");
+            card.className = "menu-card";
+            card.innerHTML = `
+                <div class="menu-photo">
+                    <img alt="">
+                </div>
+                <div class="menu-body">
+                    <h3></h3>
+                    <p></p>
+                    <div class="menu-sizes" role="group" aria-label="Choose a size"></div>
+                    <div class="menu-buy">
+                        <span class="menu-price"></span>
+                        <button class="menu-add" type="button">Add to Cart</button>
+                    </div>
+                </div>`;
+
+            const img = card.querySelector("img");
+            img.alt = product.name;
+            loadMenuImage(img, product.image);
+
+            if (product.seasonal) {
+                const tag = document.createElement("span");
+                tag.className = "menu-tag";
+                tag.textContent = "Seasonal";
+                card.querySelector(".menu-photo").appendChild(tag);
+            }
+
+            card.querySelector("h3").textContent = product.name;
+            card.querySelector("p").textContent = product.description;
+
+            const available = SIZES.filter(size => product.prices && product.prices[size] != null);
+            const sizeBox = card.querySelector(".menu-sizes");
+            const priceEl = card.querySelector(".menu-price");
+            const buttons = [];
+
+            let selected = available.includes("M") ? "M" : available[0];
+
+            function refresh() {
+                buttons.forEach(button => {
+                    button.setAttribute("aria-pressed", String(button.dataset.size === selected));
+                });
+                priceEl.textContent = selected ? formatPrice(product.prices[selected]) : "Price unavailable";
+                // Keep button enabled if selected size exists
+                card.querySelector(".menu-add").disabled = !selected;
+            }
+
+            SIZES.forEach(size => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "size-btn";
+                button.dataset.size = size;
+                button.textContent = size;
+                button.title = SIZE_NAMES[size];
+
+                if (!available.includes(size)) {
+                    button.disabled = true;
+                }
+
+                button.addEventListener("click", () => {
+                    if (!available.includes(size)) return;
+                    selected = size;
+                    refresh();
+                });
+
+                buttons.push(button);
+                sizeBox.appendChild(button);
+            });
+
+            card.querySelector(".menu-add").addEventListener("click", () => {
+                if (!selected) return;
+                
+                if (typeof Cart === "undefined" || typeof Cart.add !== "function") {
+                    alert("Cart script is missing or not loaded properly. Please check console errors.");
+                    return;
+                }
+
+                Cart.add(product.id, selected, 1);
+                showToast(`Added ${product.name} (${selected}) to your cart.`);
+            });
+
+            refresh();
+            return card;
+        }
+
+        function renderGrid() {
+            grid.innerHTML = "";
+            if (typeof DB === "undefined" || typeof DB.get !== "function") {
+                grid.textContent = "Menu products could not be loaded.";
+                return;
+            }
+            const products = DB.get("products") || [];
+            const filteredProducts = products.filter(product =>
+                activeFilter === "All" || product.category === activeFilter
+            );
+
+            if (filteredProducts.length === 0) {
+                grid.textContent = "No drinks found in this category.";
+                return;
+            }
+
+            filteredProducts.forEach(product => grid.appendChild(buildCard(product)));
+        }
+
+        function renderFilters() {
+            if (typeof DB === "undefined" || typeof DB.get !== "function") return;
+            const products = DB.get("products") || [];
+            const categories = ["All", ...new Set(products.map(p => p.category))];
+
+            filterBar.innerHTML = "";
+            categories.forEach(category => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "filter-btn";
+                button.textContent = category;
+                button.setAttribute("aria-pressed", String(category === activeFilter));
+
+                button.addEventListener("click", () => {
+                    activeFilter = category;
+                    renderFilters();
+                    renderGrid();
+                });
+
+                filterBar.appendChild(button);
+            });
+        }
+
+        // Initialize Menu
+        renderFilters();
+        renderGrid();
+    </script>
+</body>
+
+</html>

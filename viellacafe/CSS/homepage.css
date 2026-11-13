@@ -1,0 +1,353 @@
+
+/* =========================================================
+   VIELLA'S CAFÉ - HOMEPAGE STYLESHEET
+========================================================= */
+
+
+/* =========================================================
+   HEADER SECTION
+========================================================= */
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+    min-height: 85vh;
+
+    background:
+        linear-gradient(
+            rgba(60, 34, 20, 0.55),
+            rgba(60, 34, 20, 0.55)
+        ),
+        url("../images/cafe-background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 4rem 2rem;
+}
+
+.hero-content {
+    max-width: 750px;
+    width: 100%;
+
+    color: #FFFFFF;
+}
+
+.hero-content h2 {
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+
+    font-weight: 600;
+
+    margin-bottom: 1.2rem;
+
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+
+    line-height: 1.9;
+
+    margin-bottom: 2rem;
+
+    color: #F8F4ED;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.btn {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    background: #6F4E37;
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #5B3F2D;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   ABOUT VIELLA CAFÉ
+========================================================= */
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3rem;
+
+    padding: 5rem 10%;
+
+    background: #FFFAF5;
+
+    flex-wrap: wrap;
+}
+
+
+/* ABOUT LOGO */
+
+.about-logo {
+    width: 190px;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+
+    flex-shrink: 0;
+}
+
+
+/* ABOUT TEXT */
+
+.about-text {
+    flex: 1;
+
+    min-width: 280px;
+    max-width: 650px;
+}
+
+.about-text h2 {
+    color: #6F4E37;
+
+    font-size: 2.2rem;
+    font-weight: 600;
+
+    margin-bottom: 1.2rem;
+}
+
+.about-text p {
+    color: #555555;
+
+    font-size: 1rem;
+
+    line-height: 1.9;
+
+    margin-bottom: 1.2rem;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.btn-secondary {
+    display: inline-block;
+
+    padding: 12px 28px;
+
+    background: transparent;
+    color: #6F4E37;
+
+    border: 2px solid #6F4E37;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    margin-top: 0.5rem;
+
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #6F4E37;
+    color: #FFFFFF;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - TABLETS
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .about {
+        padding: 5rem 6%;
+        gap: 2.5rem;
+    }
+
+    .about-logo {
+        width: 170px;
+    }
+
+    .nav-list {
+        gap: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* HEADER */
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px;
+    }
+
+
+    /* HEADER LOGO */
+
+    .logo img {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    /* NAVIGATION */
+
+    .nav-list {
+        gap: 18px;
+
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-list .nav-item a {
+        font-size: 0.9rem;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 75vh;
+
+        padding: 4rem 1.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2.4rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 4rem 7%;
+
+        gap: 2rem;
+    }
+
+    .about-logo {
+        width: 160px;
+    }
+
+    .about-text {
+        min-width: 100%;
+    }
+
+    .about-text h2 {
+        font-size: 2rem;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - SMALL MOBILE SCREENS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    /* HEADER */
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-list {
+        gap: 12px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 70vh;
+
+        padding: 3rem 1.2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+
+    /* BUTTONS */
+
+    .btn,
+    .btn-secondary {
+        padding: 11px 23px;
+
+        font-size: 0.9rem;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        padding: 3.5rem 1.2rem;
+    }
+
+    .about-logo {
+        width: 140px;
+    }
+
+}

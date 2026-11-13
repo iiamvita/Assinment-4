@@ -1,0 +1,255 @@
+
+/* =====================================
+   ACCOUNT PAGE - MOBILE FIRST
+===================================== */
+
+.account-page {
+    min-height: 80vh;
+    padding: 2rem 1rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+
+    background-color: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(46, 30, 15, 0.08);
+}
+
+/* =====================================
+   ACCOUNT HEADING
+===================================== */
+
+.account-container h1 {
+    color: var(--color-mocha);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.account-container > p {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* =====================================
+   LOGIN / REGISTER TABS
+===================================== */
+
+.account-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    padding: 5px;
+
+    background-color: var(--color-bg-secondary);
+    border-radius: 10px;
+}
+
+.account-tabs button {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+
+    color: var(--color-mocha);
+    background-color: transparent;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+.account-tabs button.active,
+.account-tabs button:hover {
+    color: var(--white);
+    background-color: var(--color-sage);
+}
+
+/* =====================================
+   ACCOUNT FORMS
+===================================== */
+
+#register-form,
+#login-form {
+    width: 100%;
+}
+
+#register-form h2,
+#login-form h2 {
+    color: var(--color-mocha);
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+#register-form .form-group,
+#login-form .form-group {
+    margin-bottom: 1.1rem;
+}
+
+#register-form label,
+#login-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--color-espresso);
+}
+
+#register-form input,
+#login-form input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 0.9rem;
+
+    color: var(--color-espresso);
+    background-color: var(--color-bg-primary);
+
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+#register-form input:focus,
+#login-form input:focus {
+    border-color: var(--color-sage);
+    box-shadow: 0 0 0 3px rgba(131, 145, 120, 0.15);
+}
+
+#register-form input::placeholder,
+#login-form input::placeholder {
+    color: var(--color-slate);
+}
+
+/* =====================================
+   PASSWORD INPUTS
+===================================== */
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 3rem !important;
+}
+
+.password-wrapper button {
+    position: absolute;
+    right: 10px;
+
+    padding: 5px;
+    color: var(--color-mocha);
+    background: transparent;
+
+    border: none;
+    cursor: pointer;
+}
+
+/* =====================================
+   FORM BUTTONS
+===================================== */
+
+#register-form button[type="submit"],
+#login-form button[type="submit"] {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1rem;
+
+    color: var(--white);
+    background-color: var(--color-mocha);
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: background-color 0.25s ease,
+                transform 0.2s ease;
+}
+
+#register-form button[type="submit"]:hover,
+#login-form button[type="submit"]:hover {
+    background-color: var(--color-espresso);
+}
+
+#register-form button[type="submit"]:active,
+#login-form button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* =====================================
+   FORM MESSAGES
+===================================== */
+
+#register-message,
+#login-message,
+#profile-message {
+    margin-top: 1rem;
+    font-size: var(--fs-small);
+    text-align: center;
+}
+
+.form-message.success {
+    color: #4F7045;
+}
+
+.form-message.error {
+    color: #B33A3A;
+}
+
+/* =====================================
+   LINKS
+===================================== */
+
+.account-container a {
+    color: var(--color-mocha);
+    text-decoration: none;
+}
+
+.account-container a:hover {
+    color: var(--color-sage);
+    text-decoration: underline;
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (min-width: 768px) {
+
+    .account-page {
+        padding: 3rem 2rem 4rem;
+    }
+
+    .account-container {
+        padding: 2.5rem 2.25rem;
+    }
+}
+
+/* =====================================
+   DESKTOP
+===================================== */
+
+@media (min-width: 1024px) {
+
+    .account-page {
+        min-height: calc(100vh - var(--header-height));
+    }
+
+    .account-container {
+        max-width: 500px;
+        padding: 3rem;
+    }
+}

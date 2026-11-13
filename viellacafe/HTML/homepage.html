@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Viella Café | A Sip of Deliciousness</title>
+
+    <meta name="description" content="Welcome to Viella Café, where every cup is thoughtfully crafted. Explore our artisanal coffees, teas, and delicious pastries.">
+    
+    <!-- STYLESHEETS -->
+<link rel="stylesheet" href="../CSS/style.css?v=2">
+<link rel="stylesheet" href="../CSS/homepage.css">
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div id="header"></div>
+
+
+        <!-- MAIN CONTENT -->
+        <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <h2>A Sip of Deliciousness.</h2>
+
+                <p>
+                    Welcome to Viella Café, where every cup is thoughtfully
+                    crafted, and every visit feels like a warm embrace.
+
+                    Discover our menu of artisanal coffees, teas, and
+                    mouthwatering pastries.
+
+                    Delight in the warmth, cozy ambiance, and the scent
+                    of freshly brewed coffee filling the air.
+                </p>
+
+                <a href="index.html" class="btn">
+                    Explore Our Menu
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT VIELLA CAFÉ -->
+        <section class="section about" id="about">
+
+            <img
+                src="../images/viella-cafe-logo.png"
+                alt="Viella Café Logo"
+                class="about-logo"
+            >
+
+            <div class="about-text">
+
+                <h2>About Viella Café</h2>
+
+                <p>
+                    At Viella Café, we believe that every cup of coffee
+                    tells a story.
+
+                    Our passion for quality and craftsmanship is evident
+                    in every sip.
+
+                    From carefully selected beans to expert brewing
+                    techniques, we strive to create an unforgettable
+                    coffee experience for our customers.
+                </p>
+
+                <p>
+                    Whether you're looking for a quiet spot to work,
+                    a cozy place to catch up with friends, or simply
+                    a moment of indulgence, Viella Café is the perfect
+                    destination.
+
+                    Join us and discover the art of coffee at its finest.
+                </p>
+
+                <a href="index.html" class="btn-secondary">
+                    View Drinks
+                </a>
+
+            </div>
+
+        </section>
+
+        </main>
+    </div>
+
+
+    <div id="footer"></div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../JS/headerScroll.js"></script>
+    <script>
+        Promise.all([
+            fetch("header.html").then(response => {
+                if (!response.ok) throw new Error("Header could not be loaded.");
+                return response.text();
+            }),
+            fetch("footer.html").then(response => {
+                if (!response.ok) throw new Error("Footer could not be loaded.");
+                return response.text();
+            })
+        ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+                lucide.createIcons();
+                setupMobileMenu();
+                document.getElementById("footer-year").textContent =
+                    new Date().getFullYear();
+            })
+            .catch(error => console.error("Page section loading error:", error));
+    </script>
+</body>
+
+</html>

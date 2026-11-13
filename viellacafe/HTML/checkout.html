@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Viella's Café</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:ital,wght@0,400..700;1,400..700&family=Redressed&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/checkout.css">
+</head>
+<body>
+
+  <!-- Mobile Top Header -->
+  <header class="mobile-header">
+    <button class="hamburger-btn" id="toggle-sidebar" type="button" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false">
+      <i data-lucide="menu"></i>
+    </button>
+    <img class="mobile-logo" src="../images/viella-cafe-logo.png" alt="Viella Café">
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="app-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="brand-header">
+          <i data-lucide="coffee" style="color: var(--color-mocha);"></i>
+          <h1>Viella's</h1>
+        </div>
+
+        <nav>
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html#home"><i data-lucide="home"></i> Home</a></li>
+            <li class="nav-item"><a href="index.html"><i data-lucide="utensils-crossed"></i> Menu</a></li>
+            <li class="nav-item"><a href="cart.html"><i data-lucide="shopping-bag"></i> My Orders</a></li>
+            
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <li class="nav-item"><a href="account.html"><i data-lucide="user"></i> Account</a></li>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" style="flex-direction: column; max-width: 800px; margin: 0 auto; padding: 2rem;">
+
+      <h1 style="margin-bottom: 0.5rem; color: #68765B;">Checkout</h1>
+      <p style="margin-bottom: 2rem; color: #806F60;">Review your order details and complete your purchase.</p>
+
+      <div style="background: white; border: 1px solid #E7D7BA; border-radius: 16px; padding: 2rem;">
+
+        <!-- Order Summary Box -->
+        <h2 style="font-size: 1.4rem; color: #68765B; margin-bottom: 1rem; border-bottom: 1px solid #EFE3D4; padding-bottom: 0.5rem;">Order Summary</h2>
+        <div id="checkout-summary-items" style="margin-bottom: 1.5rem;"></div>
+
+        <div style="border-top: 1px dashed #E7D7BA; padding-top: 1rem; margin-bottom: 2rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; color: #2E1E0F;">
+            <span>Grand Total</span>
+            <span id="checkout-total">TT$0.00</span>
+          </div>
+        </div>
+
+        <!-- Order Details Form -->
+        <form id="checkout-form">
+          <h2 style="font-size: 1.4rem; color: #68765B; margin-bottom: 1rem;">Customer Information</h2>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Full Name</label>
+            <input type="text" id="cust-name" required placeholder="John Doe" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 8px;">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Email Address</label>
+            <input type="email" id="cust-email" required placeholder="john@example.com" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 8px;">
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Delivery / Pickup Note</label>
+            <textarea id="cust-notes" rows="3" placeholder="Add any special instructions..." style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 8px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn" style="width: 100%; background: #5B3C33; color: white; padding: 1rem; border-radius: 12px; font-weight: bold; font-size: 1rem;">Confirm & Place Order</button>
+        </form>
+
+        <div id="order-success" style="display: none; text-align: center; padding: 2rem 0;">
+          <i data-lucide="check-circle" style="width: 64px; height: 64px; color: #839178; margin-bottom: 1rem;"></i>
+          <h2 style="color: #68765B; margin-bottom: 0.5rem;">Order Placed Successfully!</h2>
+          <p style="color: #806F60; margin-bottom: 1.5rem;">Thank you for your purchase. We are preparing your coffee!</p>
+          <a href="index.html" class="btn" style="background: #5B3C33; color: white; padding: 0.75rem 1.5rem; border-radius: 20px; text-decoration: none;">Back to Home</a>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="../JS/menuDB.js"></script>
+  <script src="../JS/headerScroll.js"></script>
+
+  <script>
+    fetch("footer.html")
+      .then(response => {
+        if (!response.ok) throw new Error("Footer could not be loaded.");
+        return response.text();
+      })
+      .then(footer => {
+        document.getElementById("footer").innerHTML = footer;
+        document.getElementById("footer-year").textContent =
+          new Date().getFullYear();
+      })
+      .catch(error => console.error("Footer loading error:", error));
+
+    lucide.createIcons();
+    setupMobileMenu();
+
+    const summaryContainer = document.getElementById("checkout-summary-items");
+    const checkoutTotal = document.getElementById("checkout-total");
+    const checkoutForm = document.getElementById("checkout-form");
+    const successBox = document.getElementById("order-success");
+
+    function renderCheckout() {
+      const items = Cart.getCart();
+
+      if (!items || items.length === 0) {
+        summaryContainer.innerHTML = "<p style='color: #858585;'>Your cart is currently empty.</p>";
+        checkoutTotal.textContent = "TT$0.00";
+        checkoutForm.style.display = "none";
+        return;
+      }
+
+      let grandTotal = 0;
+      summaryContainer.innerHTML = "";
+
+      items.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        grandTotal += itemTotal;
+
+        const row = document.createElement("div");
+        row.style.cssText = "display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem;";
+        row.innerHTML = `
+          <span>${item.name} (${item.size}) x ${item.quantity}</span>
+          <span>TT$${itemTotal.toFixed(2)}</span>
+        `;
+        summaryContainer.appendChild(row);
+      });
+
+      checkoutTotal.textContent = "TT$" + grandTotal.toFixed(2);
+    }
+
+    checkoutForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Clear Cart after successful checkout
+      Cart.clear();
+
+      // Display Success Message
+      checkoutForm.style.display = "none";
+      summaryContainer.style.display = "none";
+      successBox.style.display = "block";
+    });
+
+    renderCheckout();
+  </script>
+</body>
+</html>

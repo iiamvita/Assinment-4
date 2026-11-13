@@ -1,0 +1,133 @@
+
+.hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  padding: 3rem 8%;
+  background:
+    linear-gradient(135deg, rgba(46, 30, 15, 0.8), rgba(91, 60, 51, 0.65)),
+    url('../images/cafe-background.png') center/cover no-repeat;
+  color: #FFFFFF;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.hero-content {
+  max-width: 650px;
+  z-index: 2;
+  animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content h2 {
+  font-family: var(--font-h2);
+  font-size: var(--fs-h2);
+  color: #FFE8C2;
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+  animation: slideInFromLeft 1s ease-out;
+}
+
+.hero-content p {
+  font-family: var(--font-body);
+  font-size: var(--fs-p);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.92);
+  animation: fadeIn 1.2s ease-out;
+}
+
+.hero .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  background-color: var(--sand, #E7D7BA);
+  color: var(--color-espresso);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-button);
+  font-size: var(--fs-button);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bounceIn 1.4s ease-out;
+}
+
+.hero .btn:hover {
+  background-color: var(--color-caramel, #D4A373);
+  color: #FFFFFF;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(131, 145, 120, 0.4);
+}
+
+/* ==========================================================================
+   Keyframe Animations for Divine Entrance
+   ========================================================================== */
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Overrides (Tablet & Desktop Breakpoints)
+   ========================================================================== */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 65vh;
+    padding: 5rem 1.25rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 4rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 90vh;
+    padding: 5rem 8%;
+  }
+}

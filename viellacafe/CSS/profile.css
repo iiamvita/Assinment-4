@@ -1,0 +1,311 @@
+
+/* =====================================
+   PROFILE PAGE - MOBILE FIRST
+===================================== */
+
+.profile-page {
+  width: 100%;
+  min-height: 80vh;
+  padding: 2rem 1rem 3rem;
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =====================================
+ PROFILE HEADER
+===================================== */
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+  color: var(--color-mocha);
+  margin-bottom: 0.4rem;
+}
+
+.profile-header p {
+  color: var(--color-text-muted);
+}
+
+/* =====================================
+ PROFILE LAYOUT
+===================================== */
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* =====================================
+ PROFILE CARDS
+===================================== */
+
+.profile-card,
+.account-status-card,
+.recent-orders-card {
+  width: 100%;
+  padding: 1.5rem;
+
+  background-color: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: 14px;
+
+  box-shadow: 0 4px 15px rgba(46, 30, 15, 0.06);
+}
+
+.profile-card h2,
+.account-status-card h2,
+.recent-orders-card h2 {
+  color: var(--color-mocha);
+  margin-bottom: 1.25rem;
+}
+
+/* =====================================
+ PROFILE AVATAR
+===================================== */
+
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+#profileAvatar {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+
+  border: 4px solid var(--color-bg-secondary);
+  border-radius: 50%;
+}
+
+/* =====================================
+ PROFILE FORM
+===================================== */
+
+#profileUpdateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#profileUpdateForm label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--color-espresso);
+}
+
+#profileUpdateForm input:not([type="checkbox"]) {
+  width: 100%;
+  min-height: 45px;
+  padding: 0.7rem 0.85rem;
+
+  color: var(--color-espresso);
+  background-color: var(--color-bg-primary);
+
+  border: 1px solid var(--sand);
+  border-radius: 8px;
+  outline: none;
+}
+
+#profileUpdateForm input:focus {
+  border-color: var(--color-sage);
+  box-shadow: 0 0 0 3px rgba(131, 145, 120, 0.15);
+}
+
+#profileUpdateForm input[readonly] {
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-secondary);
+  cursor: not-allowed;
+}
+
+/* =====================================
+ NOTIFICATION SETTINGS
+===================================== */
+
+.notification-setting {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+#notifications {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-sage);
+  cursor: pointer;
+}
+
+.notification-setting label {
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+/* =====================================
+ PROFILE BUTTONS
+===================================== */
+
+#profileUpdateForm button,
+.profile-button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+
+  color: var(--white);
+  background-color: var(--color-mocha);
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: background-color 0.25s ease;
+}
+
+#profileUpdateForm button:hover,
+.profile-button:hover {
+  background-color: var(--color-espresso);
+}
+
+/* =====================================
+ ACCOUNT STATUS
+===================================== */
+
+.account-status-card {
+  text-align: center;
+}
+
+.account-status {
+  display: inline-block;
+  margin: 0.5rem 0;
+  padding: 0.4rem 1rem;
+
+  color: #4F7045;
+  background-color: #E8F0E4;
+
+  border-radius: 20px;
+  font-size: var(--fs-small);
+}
+
+.member-details {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* =====================================
+ PROFILE NAME / EMAIL
+===================================== */
+
+#profile-name-display {
+  color: var(--color-mocha);
+  margin-bottom: 0.4rem;
+}
+
+#displayEmailSub {
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+}
+
+/* =====================================
+ RECENT ORDERS
+===================================== */
+
+.recent-orders-card {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 0.85rem 0.65rem;
+  border-bottom: 1px solid var(--sand);
+}
+
+.orders-table th {
+  color: var(--color-mocha);
+  background-color: var(--color-bg-secondary);
+}
+
+.orders-table td {
+  color: var(--color-text-main);
+}
+
+/* =====================================
+ LOGOUT BUTTON
+===================================== */
+
+.logout-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+
+  color: var(--white);
+  background-color: var(--color-mocha);
+
+  border-radius: 8px;
+  text-decoration: none;
+
+  transition: background-color 0.25s ease;
+}
+
+.logout-button:hover {
+  color: var(--white);
+  background-color: var(--color-espresso);
+}
+
+/* =====================================
+ TABLET
+===================================== */
+
+@media (min-width: 768px) {
+
+  .profile-page {
+      padding: 3rem 2rem;
+  }
+
+  .profile-card,
+  .account-status-card,
+  .recent-orders-card {
+      padding: 2rem;
+  }
+
+  #profileUpdateForm button {
+      width: auto;
+      min-width: 180px;
+      align-self: flex-start;
+  }
+}
+
+/* =====================================
+ DESKTOP
+===================================== */
+
+@media (min-width: 1024px) {
+
+  .profile-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+      gap: 2rem;
+  }
+
+  .profile-card {
+      grid-row: span 2;
+  }
+
+  .profile-page {
+      padding: 3.5rem 2rem;
+  }
+}
